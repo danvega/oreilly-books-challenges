@@ -2,7 +2,12 @@
 
 Source Code for Java Spring Boot Challenges
 
-rm -rf /Users/vega/dev/oreilly/dan-vega/challenge-rest-controller/assets/books;
-cp -R . /Users/vega/dev/oreilly/dan-vega/challenge-rest-controller/assets/books
+Move into dev/oreilly/dan-vega & run the following script: 
+
+```bash
+rm -rf assets/books;
+cp -R /Users/vega/dev/oreilly/oreilly-books-challenges assets/books;
 git add .
 git commit -m "updating starting code for rest controller challenge"
+git push
+```
