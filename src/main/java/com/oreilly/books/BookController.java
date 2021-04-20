@@ -9,20 +9,16 @@ import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
-@RequestMapping("/books")
 class BookController {
 
     private Map<Integer,Book> books;
 
-    @GetMapping
     public Map<Integer,Book> findAll() {
-        return books;
+        return null;
     }
 
-    @GetMapping("/{id}")
     public Book findOne(@PathVariable int id) {
-        return books.get(id);
+        return null;
     }
 
     /**
