@@ -11,20 +11,14 @@ import java.util.Map;
 @RequestMapping("/books")
 class BookController {
 
-    private BookService bookService;
-
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
-    }
-
     @GetMapping
     public Map<Integer,Book> findAll() {
-        return bookService.findAll();
+        return null;
     }
 
     @GetMapping("/{id}")
     public Book findOne(@PathVariable int id) {
-        return bookService.findOne(id);
+        return null;
     }
 
 }

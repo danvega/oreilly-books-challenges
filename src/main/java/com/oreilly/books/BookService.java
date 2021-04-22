@@ -1,12 +1,13 @@
 package com.oreilly.books;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
+@Component
 public class BookService {
 
     private Map<Integer,Book> books;
