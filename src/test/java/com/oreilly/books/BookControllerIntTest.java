@@ -13,6 +13,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BookControllerIntTest {
 
     @Autowired
@@ -25,8 +26,8 @@ public class BookControllerIntTest {
      */
     @Test
     public void invalidPathShouldThrow404NotFound() {
-        ResponseEntity<Book> entity = null; // TODO: use the test rest template to make a call to /api/books/1
-        assertEquals(HttpStatus.NOT_FOUND,null); // TODO: get the actual value of the status code from the entity
+        ResponseEntity<Book> entity = testRestTemplate.getForEntity("/api/books/1", Book.class);
+        assertEquals(HttpStatus.NOT_FOUND,entity.getStatusCode());
 
         System.out.println("success"); // DO NOT REMOVE: NEEDED FOR THE CHALLENGE
     }
@@ -43,12 +44,12 @@ public class BookControllerIntTest {
         Book response = entity.getBody();
         if( response != null ) {
             // TODO: update the assertions with the actual value from the response
-            assertEquals("97 Things Every Java Programmer Should Know", null); // title
-            assertEquals("Kevlin Henney, Trisha Gee",null); // author
-            assertEquals("OReilly Media, Inc.",null); // publisher
-            assertEquals("May 2020",null); // release date
-            assertEquals("9781491952696",null); // isbn
-            assertEquals("Java",null); // topic
+            assertEquals("97 Things Every Java Programmer Should Know", response.getTitle()); // title
+            assertEquals("Kevlin Henney, Trisha Gee",response.getAuthor()); // author
+            assertEquals("OReilly Media, Inc.",response.getPublisher()); // publisher
+            assertEquals("May 2020",response.getReleaseDate()); // release date
+            assertEquals("9781491952696",response.getIsbn()); // isbn
+            assertEquals("Java",response.getTopic()); // topic
         }
 
         System.out.println("success"); // DO NOT REMOVE: NEEDED FOR THE CHALLENGE
@@ -61,13 +62,12 @@ public class BookControllerIntTest {
     @Test
     public void findAllShouldReturnAllBooks() {
         ResponseEntity<Map> entity = testRestTemplate.getForEntity("/books", Map.class);
-        assertEquals(HttpStatus.OK,null); // TODO: update the actual value of the status code
-        Map<Integer,String> books = null; // TODO: get the response body of the entity
+        assertEquals(HttpStatus.OK,entity.getStatusCode());
+        Map<Integer,String> books = entity.getBody();
         assertNotNull(books);
-        assertEquals(3,0); // TODO: get the actual number of books returned
+        assertEquals(3,books.size());
 
         System.out.println("success"); // DO NOT REMOVE: NEEDED FOR THE CHALLENGE
     }
-
 
 }
