@@ -3,12 +3,12 @@ package com.oreilly.books;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class JdbcBookDAOTest {
@@ -17,13 +17,13 @@ class JdbcBookDAOTest {
     JdbcBookDAO dao;
 
     @Test
-    void count() {
+    void countShouldReturn3() {
         assertEquals(3,dao.count());
         System.out.println("success");
     }
 
     @Test
-    void findAll() {
+    void findAllShouldReturnAllRecordsFromDatabase() {
         List<Book> books = dao.findAll();
         assertEquals(3,books.size());
         assertEquals("97 Things Every Java Programmer Should Know", books.get(0).getTitle());
@@ -33,7 +33,7 @@ class JdbcBookDAOTest {
     }
 
     @Test
-    void findById() {
+    void findByIdShouldReturnOneRecordFromDatabase() {
         Optional<Book> result = dao.findById(1);
         assertTrue(result.isPresent());
         Book book = result.get();

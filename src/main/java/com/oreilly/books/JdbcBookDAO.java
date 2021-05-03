@@ -34,19 +34,17 @@ public class JdbcBookDAO implements BookDAO {
 
     @Override
     public long count() {
-        return jdbcTemplate.queryForObject("select count(*) from book", Long.class);
+        return 0;
     }
 
     @Override
     public List<Book> findAll() {
-        String sql = "SELECT * FROM BOOK";
-        return jdbcTemplate.query(sql, rowMapper);
+        return null;
     }
 
     @Override
     public Optional<Book> findById(int id) {
-        String sql = "SELECT * FROM book where id = ?";
-        return Optional.of(jdbcTemplate.queryForObject(sql,rowMapper,id));
+        return null;
     }
 
 }
