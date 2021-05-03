@@ -1,9 +1,7 @@
 package com.oreilly.books;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,4 +26,19 @@ class BookController {
         return dao.findById(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public Book create(@RequestBody Book book) {
+        return dao.create(book);
+    }
+
+    @PutMapping("/{id}")
+    public Book update(@RequestBody Book book, @PathVariable int id) {
+        return dao.update(book,id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id) {
+        dao.delete(id);
+    }
 }

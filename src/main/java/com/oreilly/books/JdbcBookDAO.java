@@ -2,22 +2,24 @@ package com.oreilly.books;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class JdbcBookDAO implements BookDAO {
 
     private List<Book> books;
-
     private JdbcTemplate jdbcTemplate;
+    private SimpleJdbcInsert insertBook;
 
     public JdbcBookDAO(JdbcTemplate jdbcTemplate) {
         this.books = new ArrayList<>();
         this.jdbcTemplate = jdbcTemplate;
+        insertBook = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("book")
+                .usingGeneratedKeyColumns("id");
     }
 
     RowMapper<Book> rowMapper = (rs,rowNum) -> {
@@ -47,6 +49,39 @@ public class JdbcBookDAO implements BookDAO {
     public Optional<Book> findById(int id) {
         String sql = "SELECT * FROM book where id = ?";
         return Optional.of(jdbcTemplate.queryForObject(sql,rowMapper,id));
+    }
+
+    @Override
+    public Book create(Book book) {
+        Map<String,Object> parameters = new HashMap<>();
+        parameters.put("id",book.getId());
+        parameters.put("title", book.getTitle());
+        parameters.put("author",book.getAuthor());
+        parameters.put("publisher",book.getPublisher());
+        parameters.put("release_date",book.getReleaseDate());
+        parameters.put("isbn",book.getIsbn());
+        parameters.put("topic",book.getTopic());
+        insertBook.execute(parameters);
+        return book;
+    }
+
+    @Override
+    public Book update(Book book, int id) {
+        String sql = "update book set title = ?, author = ?, publisher = ?, release_date = ?, isbn = ?, topic =? where id = ?";
+        jdbcTemplate.update(sql,
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getReleaseDate(),
+                book.getIsbn(),
+                book.getTopic(),
+                id);
+        return book;
+    }
+
+    @Override
+    public void delete(int id) {
+        jdbcTemplate.update("delete from book where id = ?",id);
     }
 
 }

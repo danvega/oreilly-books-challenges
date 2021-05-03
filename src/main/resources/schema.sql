@@ -1,5 +1,5 @@
 CREATE TABLE book(
-    id INT NOT NULL,
+    id INT,
     title VARCHAR(100) NOT NULL,
     author VARCHAR(100) NOT NULL,
     publisher VARCHAR(100),
