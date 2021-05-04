@@ -51,6 +51,13 @@ public class JdbcBookDAO implements BookDAO {
         return Optional.of(jdbcTemplate.queryForObject(sql,rowMapper,id));
     }
 
+    /**
+     * I will persist a new instance of a book to the database. The database currently does not auto generate a new id. This means
+     * that the incoming request will have the books id included.
+     *
+     * @param book The new book.
+     * @return the new book that was persisted to the database.
+     */
     @Override
     public Book create(Book book) {
         Map<String,Object> parameters = new HashMap<>();
@@ -65,6 +72,13 @@ public class JdbcBookDAO implements BookDAO {
         return book;
     }
 
+    /**
+     * I will update an existing book in the database.
+     *
+     * @param book The updated book
+     * @param id The id of the book being updated.
+     * @return The updated book.
+     */
     @Override
     public Book update(Book book, int id) {
         String sql = "update book set title = ?, author = ?, publisher = ?, release_date = ?, isbn = ?, topic =? where id = ?";
@@ -79,6 +93,11 @@ public class JdbcBookDAO implements BookDAO {
         return book;
     }
 
+    /**
+     * I will remove a book from the database
+     *
+     * @param id the id of the book being deleted.
+     */
     @Override
     public void delete(int id) {
         jdbcTemplate.update("delete from book where id = ?",id);
