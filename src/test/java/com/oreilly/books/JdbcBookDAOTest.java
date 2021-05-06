@@ -55,7 +55,6 @@ class JdbcBookDAOTest {
     @Test
     void shouldInsertValidBookIntoDatabase() {
         Book book = new Book();
-        book.setId(4);
         book.setTitle("Cloud Native Java: Designing Resilient Systems with Spring Boot, Spring Cloud, and Cloud Foundry");
         book.setAuthor("Josh Long & Kenny Bastani");
         book.setPublisher("OReilly Media, Inc.");
