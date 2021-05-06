@@ -61,14 +61,14 @@ public class JdbcBookDAO implements BookDAO {
     @Override
     public Book create(Book book) {
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("id",book.getId());
         parameters.put("title", book.getTitle());
         parameters.put("author",book.getAuthor());
         parameters.put("publisher",book.getPublisher());
         parameters.put("release_date",book.getReleaseDate());
         parameters.put("isbn",book.getIsbn());
         parameters.put("topic",book.getTopic());
-        insertBook.execute(parameters);
+        Number id = insertBook.executeAndReturnKey(parameters);
+        book.setId((Integer) id);
         return book;
     }
 
