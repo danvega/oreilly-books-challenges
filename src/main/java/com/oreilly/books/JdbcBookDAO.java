@@ -52,8 +52,7 @@ public class JdbcBookDAO implements BookDAO {
     }
 
     /**
-     * I will persist a new instance of a book to the database. The database currently does not auto generate a new id. This means
-     * that the incoming request will have the books id included.
+     * I will persist a new instance of a book to the database.
      *
      * @param book The new book.
      * @return the new book that was persisted to the database.
