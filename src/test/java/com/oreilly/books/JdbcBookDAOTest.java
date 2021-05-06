@@ -50,7 +50,6 @@ class JdbcBookDAOTest {
 
     /**
      * Task 1: create a new book
-     * Hint: The id for book is not being auto generated in the database
      */
     @Test
     void shouldInsertValidBookIntoDatabase() {
