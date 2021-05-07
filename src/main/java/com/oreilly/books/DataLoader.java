@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component // TASK 1
-@Profile("dev") // TASK 2
+@Component
+@Profile("dev")
 public class DataLoader implements CommandLineRunner {
 
     private BookDAO dao;
@@ -18,10 +18,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        // TASK 3
         getBooks().stream().forEach(dao::create);
-
     }
 
     /**
