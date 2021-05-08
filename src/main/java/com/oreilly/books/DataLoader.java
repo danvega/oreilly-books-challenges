@@ -6,8 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@Profile("dev")
+
 public class DataLoader implements CommandLineRunner {
 
     private BookDAO dao;
@@ -18,7 +17,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        getBooks().stream().forEach(dao::create);
+        // TODO: save the 3 books returned from the getBooks() method into the database using the DAO
     }
 
     /**
