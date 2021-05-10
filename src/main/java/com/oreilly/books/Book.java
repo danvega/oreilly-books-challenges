@@ -17,7 +17,7 @@ public class Book {
     @Length(min = 10, message = "ISBN must be at least 10 characters in length.")
     private String isbn;
     private String topic;
-    @Min(value = 0, message = "Price must be greater than zero.")
+    @Min(value = 1, message = "Price must be greater than or equal to one dollar.")
     private Double price;
 
     public Book() {

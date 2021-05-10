@@ -139,7 +139,7 @@ class BookControllerTest {
         book.setReleaseDate("September 2019");
         book.setIsbn("9781449374648");
         book.setTopic("Spring Cloud");
-        // book defaults to 0 if not set
+        book.setPrice(0.00);
 
         mvc.perform(post("/books")
                 .contentType(MediaType.APPLICATION_JSON)
