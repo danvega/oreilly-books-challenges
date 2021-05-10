@@ -137,7 +137,7 @@ class BookControllerTest {
         book.setAuthor("Josh Long & Kenny Bastani");
         book.setPublisher("OReilly Media, Inc.");
         book.setReleaseDate("September 2019");
-        book.setIsbn("1234");
+        book.setIsbn("9781449374648");
         book.setTopic("Spring Cloud");
         // book defaults to 0 if not set
 
