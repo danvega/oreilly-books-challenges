@@ -32,15 +32,17 @@ public class DataLoader implements CommandLineRunner {
                 "OReilly Media, Inc.",
                 "May 2020",
                 "9781491952696",
-                "Java");
+                "Java",
+                21.44);
 
         Book two = new Book(
                 "Spring Boot: Up and Running",
                 "Mark Heckler",
                 "OReilly Media, Inc.",
                 "February 2021",
-                "9781492076919",
-                "Spring");
+                "979-8643893974",
+                "Spring",
+                39.99);
 
         Book three = new Book(
                 "Hacking with Spring Boot 2.3: Reactive Edition",
@@ -48,7 +50,8 @@ public class DataLoader implements CommandLineRunner {
                 "Amazon.com Services LLC",
                 "May 2020",
                 "B086722L4L",
-                "Spring");
+                "Spring",
+                23.99);
 
         return List.of(one,two,three);
     }

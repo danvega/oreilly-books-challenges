@@ -1,25 +1,36 @@
 package com.oreilly.books;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 public class Book {
 
     private int id;
+    @NotBlank(message = "Please provide a title.")
     private String title;
+    @NotBlank(message = "Please provide an author.")
     private String author;
     private String publisher;
     private String releaseDate;
+    @Length(min = 10, message = "ISBN must be at least 10 characters in length.")
     private String isbn;
     private String topic;
+    @Min(value = 0, message = "Price must be greater than zero.")
+    private Double price;
 
     public Book() {
     }
 
-    public Book(String title, String author, String publisher, String releaseDate, String isbn, String topic) {
+    public Book(String title, String author, String publisher, String releaseDate, String isbn, String topic,double price) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.releaseDate = releaseDate;
         this.isbn = isbn;
         this.topic = topic;
+        this.price = price;
     }
 
     public int getId() {
@@ -76,6 +87,14 @@ public class Book {
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override

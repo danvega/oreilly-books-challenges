@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -30,7 +31,7 @@ class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> create(@RequestBody Book book ) {
+    public ResponseEntity<Book> create(@Valid @RequestBody Book book ) {
         return ResponseEntity.status(201).body(dao.create(book));
     }
 
