@@ -29,9 +29,8 @@ class BookController {
         return dao.findById(id);
     }
 
-    @PostMapping
-    public ResponseEntity<Book> create(@RequestBody Book book ) {
-        return ResponseEntity.status(201).body(dao.create(book));
+    public ResponseEntity<Book> create(Book book ) {
+        return ResponseEntity.ok(book);
     }
 
 }

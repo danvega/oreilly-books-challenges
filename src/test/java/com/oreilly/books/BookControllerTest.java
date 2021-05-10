@@ -40,7 +40,7 @@ class BookControllerTest {
     void createMethodShouldAddNewBookInDatabase() {
         ResponseEntity<Book> bookResponseEntity = controller.create(getSampleBook());
         assertNotNull(bookResponseEntity);
-        assertNotNull(bookResponseEntity.getBody().getId());
+        assertEquals(4,bookResponseEntity.getBody().getId());
         System.out.println("success");
     }
 
