@@ -33,14 +33,11 @@ class BookController {
         return ResponseEntity.status(201).body(dao.create(book));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@Valid @RequestBody Book book, @PathVariable int id) {
+    public ResponseEntity<Void> update(@Valid @RequestBody Book book, int id) {
         dao.update(book,id);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(int id) {
         dao.delete(id);
     }
